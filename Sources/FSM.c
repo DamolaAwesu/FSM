@@ -35,7 +35,7 @@ static Event const initEvt  = { INIT_SIG };
  *******************************************************************************
  * \brief     This function initializes the FSM to a known initial state
  *
- * \return    Std_ReturnType
+ * \return    Status_Type
  *            E_OK/E_NOT_OK
  *
  * \param     [in] me
@@ -45,10 +45,10 @@ static Event const initEvt  = { INIT_SIG };
  *
  *******************************************************************************
  */
-Std_ReturnType Fsm_Init(FSM * const me, StateHandler initialState)
+Status_Type Fsm_Init(FSM * const me, StateHandler initialState)
 {
   /**< Local Variables */
-  Std_ReturnType retVal = E_OK;
+  Status_Type retVal = E_OK;
   FSM_STATUS_E status;
 
   /**< Check arguments are not NULL */
@@ -76,7 +76,7 @@ Std_ReturnType Fsm_Init(FSM * const me, StateHandler initialState)
  * \brief     This function is called regularly to dispatch events
  *            to the state handlers
  *
- * \return    Std_ReturnType
+ * \return    Status_Type
  *            E_OK/E_NOT_OK
  *
  * \param     [in] me
@@ -86,11 +86,11 @@ Std_ReturnType Fsm_Init(FSM * const me, StateHandler initialState)
  *
  *******************************************************************************
  */
-Std_ReturnType Fsm_Dispatch(FSM * const me, Event const * const evt)
+Status_Type Fsm_Dispatch(FSM * const me, Event const * const evt)
 {
   /**< Local variables */
   FSM_STATUS_E status;
-  Std_ReturnType retVal = E_OK;
+  Status_Type retVal = E_OK;
 
   /**< Check arguments are not NULL */
   assert(me && evt);

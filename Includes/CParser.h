@@ -23,13 +23,12 @@
 
 #include "FSM.h"
 
-/** \brief Enum of possible states of CParser FSM
+/********************************************//**
+ * \enum    CParser_State
  *
- * \param
- * \param
- * \return
+ * \brief   All possible states of the CParser FSM
  *
- */
+ ***********************************************/
 typedef enum{
     CODE_STATE,
     COMMENT_STATE,
@@ -38,39 +37,28 @@ typedef enum{
     MAX_STATES
 }CParser_State;
 
-/** \brief Signals handled by CParser FSM
+/********************************************//**
+ * \enum    CParser_Signals
  *
- * \param
- * \param
- * \return
+ * \brief   CParserFSM-specific events
  *
- */
+ ***********************************************/
 typedef enum {
     CHAR_SIG = USER_SIG,
     SLASH_SIG,
     STAR_SIG
 }CParser_Signals;
 
-/** \brief CParser FSM class
+/********************************************//**
+ * \struct  CParserFSM
  *
- * \param
- * \param
- * \return
+ * \brief   Concrete FSM class for CParser
  *
- */
+ ***********************************************/
 typedef struct {
     FSM super;
     CParser_State state;
 }CParserFSM;
-
-/********************************************************
-* StateHandler Prototypes
-********************************************************/
-FSM_STATUS_E CParser_CodeState(CParserFSM * const me, Event const * const evt);
-FSM_STATUS_E CParser_CommentState(CParserFSM * const me, Event const * const evt);
-FSM_STATUS_E CParser_SlashState(CParserFSM * const me, Event const * const evt);
-FSM_STATUS_E CParser_StarState(CParserFSM * const me, Event const * const evt);
-
 
 /**
  *******************************************************************************

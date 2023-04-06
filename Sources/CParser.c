@@ -52,7 +52,6 @@ FSM_STATUS_E CParser_CodeState(CParserFSM * const me, Event const * const evt)
             retStatus = HANDLED_STATUS;
             break;
         case EXIT_SIG:
-            //printf("Leaving Code state \n");
             retStatus = HANDLED_STATUS;
             break;
         case SLASH_SIG:
@@ -92,7 +91,6 @@ FSM_STATUS_E CParser_CommentState(CParserFSM * const me, Event const * const evt
             retStatus = HANDLED_STATUS;
             break;
         case EXIT_SIG:
-            //printf("Leaving Comment state \n");
             retStatus = HANDLED_STATUS;
             break;
         case STAR_SIG:
@@ -132,7 +130,6 @@ FSM_STATUS_E CParser_SlashState(CParserFSM * const me, Event const * const evt)
             retStatus = HANDLED_STATUS;
             break;
         case EXIT_SIG:
-            //printf("Leaving Slash state \n");
             retStatus = HANDLED_STATUS;
             break;
         case CHAR_SIG:
@@ -176,7 +173,6 @@ FSM_STATUS_E CParser_StarState(CParserFSM * const me, Event const * const evt)
             retStatus = HANDLED_STATUS;
             break;
         case EXIT_SIG:
-            //printf("Leaving Star state \n");
             retStatus = HANDLED_STATUS;
             break;
         case CHAR_SIG:

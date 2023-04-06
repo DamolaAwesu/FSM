@@ -35,17 +35,16 @@ typedef struct FSM FSM;            /**< Forward declaration of FSM struct    */
 typedef struct Event Event;        /**< Forward declaration of Event struct  */
 
 /********************************************//**
- * \enum  Std_ReturnType
+ * \enum  Status_Type
  *
  * \brief Indicate pass/fail of an operation
  *
  ***********************************************/
-
 typedef enum
 {
     E_OK,
     E_NOT_OK
-}Std_ReturnType;
+}Status_Type;
 
 /********************************************//**
  * \enum  FSM_STATUS_E
@@ -77,9 +76,6 @@ typedef enum {
 /**< State Handler function prototype */
 typedef FSM_STATUS_E (*StateHandler)(FSM *me, Event const * const evt);
 
-/******************************************************************************
-* Structure definitions
-******************************************************************************/
 /********************************************//**
  * \struct  FSM
  *
@@ -100,14 +96,11 @@ struct Event {
   uint32_t sig;
 };
 
-/******************************************************************************
-* FSM Function Prototypes
-******************************************************************************/
 /**
  *******************************************************************************
  * \brief     This function initializes the FSM to a known initial state
  *
- * \return    Std_ReturnType
+ * \return    Status_Type
  *            E_OK/E_NOT_OK
  *
  * \param     [in] me
@@ -117,14 +110,14 @@ struct Event {
  *
  *******************************************************************************
  */
-Std_ReturnType Fsm_Init(FSM * const me, StateHandler initialState);
+Status_Type Fsm_Init(FSM * const me, StateHandler initialState);
 
 /**
  *******************************************************************************
  * \brief     This function is called regularly to dispatch events
  *            to the state handlers
  *
- * \return    Std_ReturnType
+ * \return    Status_Type
  *            E_OK/E_NOT_OK
  *
  * \param     [in] me
@@ -134,7 +127,7 @@ Std_ReturnType Fsm_Init(FSM * const me, StateHandler initialState);
  *
  *******************************************************************************
  */
-Std_ReturnType Fsm_Dispatch(FSM * const me, Event const * const e);
+Status_Type Fsm_Dispatch(FSM * const me, Event const * const e);
 
 /**
  *******************************************************************************

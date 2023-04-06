@@ -40,7 +40,7 @@
 int main(void)
 {
   /**< Local variables */
-  Std_ReturnType retVal = E_OK;
+  Status_Type retVal = E_OK;
   CParserFSM CParser;
   Event evt;
   FILE * fp;
