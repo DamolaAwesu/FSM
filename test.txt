@@ -1,0 +1,31 @@
+/*****************************************************************************
+*  This software and the associated documentation are confidential
+*  and proprietary to Silicon Mobility. Use or disclosure of this
+*  software is subject to the terms and conditions of a written
+*  license agreement between you, or your company, and Silicon Mobility.
+*  In the event of publication, the following notice is applicable:
+*  begin-copyright
+*                 COPYRIGHT (C) 2022 SILICON MOBILITY
+*                       ALL RIGHTS RESERVED
+*  end-copyright
+******************************************************************************/
+/**
+*******************************************************************************
+*  \file
+*  $Rev: $
+*  $Date: $
+*  $Author: $
+*  $HeadURL: $
+*
+*  \brief Put here a short brief describing the file (in less than one line)
+*
+*  Put here a more complete description (if necessary) of this file,
+*  using one or more than one line
+*  end-description
+*******************************************************************************
+*/
+
+int x;  /**< test member */
+/* comment */
+x = x / 5;
+/* end */
