@@ -1,0 +1,26 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "C/C++: clang build active file",
+			"command": "/usr/bin/gcc",
+			"args": [
+				"-g",
+				"${workspaceFolderBasename}/FSM.c",
+				"${workspaceFolderBasename}/CParser.c",
+				"${workspaceFolderBasename}/main.c",
+				"-o",
+				"${workspaceFolderBasename}/test"
+			],
+			"options": {
+				"cwd": "${workspaceFolderBasename}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build",
+			"detail": "compiler: /usr/bin/clang"
+		}
+	]
+}

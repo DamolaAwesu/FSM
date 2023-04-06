@@ -26,7 +26,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include <unistd.h>
-
+#include "string.h"
 
 
 /** \brief Main Application
@@ -45,7 +45,7 @@ int main(void)
   Event evt;
   FILE * fp;
 
-  const char * filename = "Sources\\main.c";
+  const char * filename = "main.c";
 
   /**< Get current directory */
   char currDir[512];
@@ -56,9 +56,9 @@ int main(void)
   }
 
   /**< Get qualified file path */
-  char testFile[strlen(currDir)+strlen(filename)+1];
+  char testFile[strlen(currDir)+strlen(filename)+2];
   memset(testFile, '\0', strlen(currDir)+strlen(filename)+2);
-  snprintf(testFile, strlen(currDir)+strlen(filename)+1, "%s\\%s",currDir,filename);
+  snprintf(testFile, strlen(currDir)+strlen(filename)+2, "%s/%s",currDir,filename);
   printf("%s\n", testFile);
 
   /**< Exit if file open failed */
