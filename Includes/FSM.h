@@ -67,7 +67,7 @@ typedef enum {
  *
  ***********************************************/
 typedef enum {
-  INIT_SIG,
+  INIT_SIG = 1,
   ENTRY_SIG,
   EXIT_SIG,
   USER_SIG

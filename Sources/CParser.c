@@ -22,6 +22,12 @@
 #include "CParser.h"
 #include "stdio.h"
 
+typedef enum {
+    EMPTY_SIG
+}HiddenSignals;
+
+static Event const emptySig = {EMPTY_SIG};
+
 /**
  *******************************************************************************
  * \brief     Code State StateHandler
@@ -49,13 +55,17 @@ FSM_STATUS_E CParser_CodeState(CParserFSM * const me, Event const * const evt)
         case ENTRY_SIG:
             printf("Entering Code state\n");
             me->state = CODE_STATE;
-            retStatus = HANDLED_STATUS;
+            retStatus = Fsm_Dispatch((FSM *)me, (Event *)&emptySig);
             break;
         case EXIT_SIG:
             retStatus = HANDLED_STATUS;
             break;
         case SLASH_SIG:
             retStatus = Fsm_Transition((FSM *)me, (StateHandler)CParser_SlashState);
+            break;
+        case EMPTY_SIG:
+            printf("Reminder Event\n");
+            retStatus = HANDLED_STATUS;
             break;
         default:
             retStatus = IGNORED_STATUS;
