@@ -1,31 +1,120 @@
-/*****************************************************************************
-*  This software and the associated documentation are confidential
-*  and proprietary to Silicon Mobility. Use or disclosure of this
-*  software is subject to the terms and conditions of a written
-*  license agreement between you, or your company, and Silicon Mobility.
-*  In the event of publication, the following notice is applicable:
-*  begin-copyright
-*                 COPYRIGHT (C) 2022 SILICON MOBILITY
-*                       ALL RIGHTS RESERVED
-*  end-copyright
-******************************************************************************/
+/**
+ *******************************************************************************
+ * \addtogroup APP
+ * \{
+ *******************************************************************************
+*/
+
 /**
 *******************************************************************************
 *  \file
 *  $Rev: $
 *  $Date: $
-*  $Author: $
 *  $HeadURL: $
 *
-*  \brief Put here a short brief describing the file (in less than one line)
+*  \brief
+*  This file is the FSM Test App Source file
 *
-*  Put here a more complete description (if necessary) of this file,
-*  using one or more than one line
 *  end-description
 *******************************************************************************
 */
 
-int x;  /**< test member */
-/* comment */
-x = x / 5;
-/* end */
+/********************************************//**
+ * Includes
+ ***********************************************/
+#include "CParser.h"
+#include "stdio.h"
+#include "stdlib.h"
+#include <unistd.h>
+#include "string.h"
+
+
+/** \brief Main Application
+ *
+ * \param None
+ * \param
+ * \return int
+ *
+ */
+
+int main(void)
+{
+  /**< Local variables */
+  Status_Type retVal = E_OK;
+  CParserFSM CParser;
+  Event evt;
+  FILE * fp;
+
+  const char * filename = "main.c";
+
+  /**< Get current directory */
+  char currDir[512];
+  memset(currDir,'\0', 512);
+  if(getcwd(currDir, 512) == NULL)
+  {
+    exit(1);
+  }
+
+  /**< Get qualified file path */
+  char testFile[strlen(currDir)+strlen(filename)+2];
+  memset(testFile, '\0', strlen(currDir)+strlen(filename)+2);
+  snprintf(testFile, strlen(currDir)+strlen(filename)+2, "%s/%s",currDir,filename);
+  printf("%s\n", testFile);
+
+  /**< Exit if file open failed */
+  if((fp = fopen(testFile,"r")) == NULL)
+  {
+    fclose(fp);
+    return -1;
+  }
+
+  /**< Initialize concrete CParser FSM */
+  retVal = CParser_Init(&CParser);
+
+  if(E_OK == retVal)
+  {
+    /**< Read file line by line */
+    char line[1024];
+    memset(line, '\0', 1024);
+
+    if(NULL != fp)
+    {
+      while(fgets(line,1024,fp) != NULL)
+      {
+        printf("%s", line);
+        /**< Generate events based on file contents */
+        for(int i = 0; i < strlen(line); i++)
+        {
+          switch(line[i])
+          {
+            case '/':
+              evt.sig = SLASH_SIG;
+              break;
+            case '*':
+              evt.sig = STAR_SIG;
+              break;
+            case '\n':
+              continue;
+            default:
+              evt.sig = CHAR_SIG;
+              break;
+          }
+
+          /**< Dispatch event to FSM */
+          retVal = Fsm_Dispatch((FSM *)&CParser,(Event *)&evt);
+        }
+      }
+
+      /**< Close file */
+      fclose(fp);
+    }
+    else
+    {
+      retVal = E_NOT_OK;
+    }
+  }
+
+  return retVal;
+}
+
+/** \} doxygen end group definition */
