@@ -62,66 +62,16 @@ typedef struct {
 
 /**
  *******************************************************************************
- * \brief     Code State StateHandler
+ * \brief     CParser Init function
  *
- * \return    FSM_STATUS_E
- *            INIT/HANDLED/TRANS/IGNORED/ERROR
+ * \return    Status_Type
+ *            E_OK/E_NOT_OK
  *
- * \param     [in] me
+ * \param     [in] fsm
  *            FSM instance
- * \param     [in] evt
- *            Pointer to event to be handled by the statehandler
  *
  *******************************************************************************
  */
-FSM_STATUS_E CParser_CodeState(CParserFSM * const me, Event const * const evt);
-
-/**
- *******************************************************************************
- * \brief     Comment State StateHandler
- *
- * \return    FSM_STATUS_E
- *            INIT/HANDLED/TRANS/IGNORED/ERROR
- *
- * \param     [in] me
- *            FSM instance
- * \param     [in] evt
- *            Pointer to event to be handled by the statehandler
- *
- *******************************************************************************
- */
-FSM_STATUS_E CParser_CommentState(CParserFSM * const me, Event const * const evt);
-
-/**
- *******************************************************************************
- * \brief     Slash State StateHandler
- *
- * \return    FSM_STATUS_E
- *            INIT/HANDLED/TRANS/IGNORED/ERROR
- *
- * \param     [in] me
- *            FSM instance
- * \param     [in] evt
- *            Pointer to event to be handled by the statehandler
- *
- *******************************************************************************
- */
-FSM_STATUS_E CParser_SlashState(CParserFSM * const me, Event const * const evt);
-
-/**
- *******************************************************************************
- * \brief     Star State StateHandler
- *
- * \return    FSM_STATUS_E
- *            INIT/HANDLED/TRANS/IGNORED/ERROR
- *
- * \param     [in] me
- *            FSM instance
- * \param     [in] evt
- *            Pointer to event to be handled by the statehandler
- *
- *******************************************************************************
- */
-FSM_STATUS_E CParser_StarState(CParserFSM * const me, Event const * const evt);
+Status_Type CParser_Init(CParserFSM * fsm);
 
 #endif // CPARSER_H_INCLUDED

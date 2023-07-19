@@ -68,8 +68,8 @@ int main(void)
     return -1;
   }
 
-  /**< Initialize FSM */
-  retVal = Fsm_Init((FSM *)&CParser,(StateHandler)CParser_CodeState);
+  /**< Initialize concrete CParser FSM */
+  retVal = CParser_Init(&CParser);
 
   if(E_OK == retVal)
   {

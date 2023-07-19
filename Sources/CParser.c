@@ -19,14 +19,68 @@
 *******************************************************************************
 */
 
+/********************************************//**
+ * Includes
+ ***********************************************/
 #include "CParser.h"
 #include "stdio.h"
 
+/********************************************//**
+ * Reserved Reminder Signal definition
+ ***********************************************/
 typedef enum {
     EMPTY_SIG
 }HiddenSignals;
 
 static Event const emptySig = {EMPTY_SIG};
+
+/********************************************//**
+ * \brief StateHandler function prototypes
+ *
+ * \param   [in] me
+ *          Pointer to FSM instance
+ * \param   [in] evt
+ *          Pointer to active event
+ * \return  FSM_STATUS_E
+ *          INIT/HANDLED/TRANS/IGNORED/ERROR
+ *
+ ***********************************************/
+static FSM_STATUS_E CParser_SlashState(CParserFSM * const me, Event const * const evt);
+static FSM_STATUS_E CParser_StarState(CParserFSM * const me, Event const * const evt);
+static FSM_STATUS_E CParser_CodeState(CParserFSM * const me, Event const * const evt);
+static FSM_STATUS_E CParser_CommentState(CParserFSM * const me, Event const * const evt);
+
+/**
+ *******************************************************************************
+ * \brief     CParser Init function
+ *
+ * \return    Status_Type
+ *            E_OK/E_NOT_OK
+ *
+ * \param     [in] fsm
+ *            FSM instance
+ *
+ *******************************************************************************
+ */
+Status_Type CParser_Init(CParserFSM * fsm)
+{
+  Status_Type retVal = E_OK;
+
+  if((NULL != fsm))
+  {
+    /**< Initialize FSM */
+    retVal = Fsm_Init(&fsm->super,(StateHandler)CParser_CodeState);
+    if(retVal == E_OK)
+    {
+      fsm->state = CODE_STATE;
+    }
+  }
+  else
+  {
+    retVal = E_NOT_OK;
+  }
+  return retVal;
+}
 
 /**
  *******************************************************************************
@@ -42,7 +96,7 @@ static Event const emptySig = {EMPTY_SIG};
  *
  *******************************************************************************
  */
-FSM_STATUS_E CParser_CodeState(CParserFSM * const me, Event const * const evt)
+static FSM_STATUS_E CParser_CodeState(CParserFSM * const me, Event const * const evt)
 {
     FSM_STATUS_E retStatus;
 
@@ -89,7 +143,7 @@ FSM_STATUS_E CParser_CodeState(CParserFSM * const me, Event const * const evt)
  *
  *******************************************************************************
  */
-FSM_STATUS_E CParser_CommentState(CParserFSM * const me, Event const * const evt)
+static FSM_STATUS_E CParser_CommentState(CParserFSM * const me, Event const * const evt)
 {
     FSM_STATUS_E retStatus;
 
@@ -128,7 +182,7 @@ FSM_STATUS_E CParser_CommentState(CParserFSM * const me, Event const * const evt
  *
  *******************************************************************************
  */
-FSM_STATUS_E CParser_SlashState(CParserFSM * const me, Event const * const evt)
+static FSM_STATUS_E CParser_SlashState(CParserFSM * const me, Event const * const evt)
 {
     FSM_STATUS_E retStatus;
 
@@ -171,7 +225,7 @@ FSM_STATUS_E CParser_SlashState(CParserFSM * const me, Event const * const evt)
  *
  *******************************************************************************
  */
-FSM_STATUS_E CParser_StarState(CParserFSM * const me, Event const * const evt)
+static FSM_STATUS_E CParser_StarState(CParserFSM * const me, Event const * const evt)
 {
     FSM_STATUS_E retStatus;
 
