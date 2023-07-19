@@ -4,7 +4,7 @@ OBJ_DIR = obj
 BIN_DIR = .
 
 VPATH += ./Sources
-INCLUDE = -I.
+INCLUDE += -I./Includes
 
 CC = gcc
 
