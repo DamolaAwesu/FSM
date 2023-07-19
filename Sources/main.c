@@ -45,7 +45,7 @@ int main(void)
   Event evt;
   FILE * fp;
 
-  const char * filename = "main.c";
+  const char * filename = "test.txt";
 
   /**< Get current directory */
   char currDir[512];
