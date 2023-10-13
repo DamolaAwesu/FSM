@@ -109,7 +109,7 @@ static FSM_STATUS_E CParser_CodeState(CParserFSM * const me, Event const * const
         case ENTRY_SIG:
             printf("Entering Code state\n");
             me->state = CODE_STATE;
-            retStatus = Fsm_Dispatch((FSM *)me, (Event *)&emptySig);
+            retStatus = HANDLED_STATUS;
             break;
         case EXIT_SIG:
             retStatus = HANDLED_STATUS;
@@ -131,7 +131,7 @@ static FSM_STATUS_E CParser_CodeState(CParserFSM * const me, Event const * const
 
 /**
  *******************************************************************************
- * \brief     Code State StateHandler
+ * \brief     Comment State StateHandler
  *
  * \return    FSM_STATUS_E
  *            INIT/HANDLED/TRANS/IGNORED/ERROR
@@ -170,7 +170,7 @@ static FSM_STATUS_E CParser_CommentState(CParserFSM * const me, Event const * co
 
 /**
  *******************************************************************************
- * \brief     Code State StateHandler
+ * \brief     Slash State StateHandler
  *
  * \return    FSM_STATUS_E
  *            INIT/HANDLED/TRANS/IGNORED/ERROR
@@ -213,7 +213,7 @@ static FSM_STATUS_E CParser_SlashState(CParserFSM * const me, Event const * cons
 
 /**
  *******************************************************************************
- * \brief     Code State StateHandler
+ * \brief     Star State StateHandler
  *
  * \return    FSM_STATUS_E
  *            INIT/HANDLED/TRANS/IGNORED/ERROR
@@ -252,3 +252,4 @@ static FSM_STATUS_E CParser_StarState(CParserFSM * const me, Event const * const
 
     return retStatus;
 }
+/** \} doxygen end group definition */

@@ -75,3 +75,4 @@ typedef struct {
 Status_Type CParser_Init(CParserFSM * fsm);
 
 #endif // CPARSER_H_INCLUDED
+/** \} doxygen end group definition */

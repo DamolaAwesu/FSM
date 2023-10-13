@@ -35,7 +35,7 @@ static Event const initEvt  = { INIT_SIG };
  *******************************************************************************
  * \brief     This function initializes the FSM to a known initial state
  *
- * \return    Status_Type
+ * \return    Std_ReturnType
  *            E_OK/E_NOT_OK
  *
  * \param     [in] me
@@ -69,19 +69,19 @@ Status_Type Fsm_Init(FSM * const me, StateHandler initialState)
   }
 
   return retVal;
-} /** end of Fsm_Init */
+}
 
 /**
  *******************************************************************************
  * \brief     This function is called regularly to dispatch events
  *            to the state handlers
  *
- * \return    Status_Type
+ * \return    Std_ReturnType
  *            E_OK/E_NOT_OK
  *
  * \param     [in] me
  *            instance of FSM to be initialized
- * \param     [in] e
+ * \param     [in] evt
  *            pointer to event to be passed to the active StateHandler
  *
  *******************************************************************************
@@ -102,7 +102,7 @@ Status_Type Fsm_Dispatch(FSM * const me, Event const * const evt)
     retVal = E_NOT_OK;
   }
   return retVal;
-} /** end of Fsm_Dispatch */
+}
 
 /**
  *******************************************************************************
@@ -136,6 +136,6 @@ FSM_STATUS_E Fsm_Transition(FSM * const me, StateHandler nextStateHandler)
   }
 
   return status;
-} /** end of Fsm_Transition */
+}
 
 /** \} doxygen end group definition */
