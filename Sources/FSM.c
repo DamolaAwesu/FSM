@@ -35,7 +35,7 @@ static Event const initEvt  = { INIT_SIG };
  *******************************************************************************
  * \brief     This function initializes the FSM to a known initial state
  *
- * \return    Std_ReturnType
+ * \return    Status_Type
  *            E_OK/E_NOT_OK
  *
  * \param     [in] me
@@ -76,7 +76,7 @@ Status_Type Fsm_Init(FSM * const me, StateHandler initialState)
  * \brief     This function is called regularly to dispatch events
  *            to the state handlers
  *
- * \return    Std_ReturnType
+ * \return    Status_Type
  *            E_OK/E_NOT_OK
  *
  * \param     [in] me
