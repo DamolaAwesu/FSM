@@ -82,7 +82,7 @@ typedef FSM_STATUS_E (*StateHandler)(FSM *me, Event const * const evt);
  * \brief   Representation of FSM class
  *
  ***********************************************/
-struct FSM{
+struct FSM {
   StateHandler stateHandler;
 };
 
@@ -122,12 +122,12 @@ Status_Type Fsm_Init(FSM * const me, StateHandler initialState);
  *
  * \param     [in] me
  *            instance of FSM to be initialized
- * \param     [in] e
+ * \param     [in] evt
  *            pointer to event to be passed to the active StateHandler
  *
  *******************************************************************************
  */
-Status_Type Fsm_Dispatch(FSM * const me, Event const * const e);
+Status_Type Fsm_Dispatch(FSM * const me, Event const * const evt);
 
 /**
  *******************************************************************************

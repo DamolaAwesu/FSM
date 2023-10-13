@@ -26,6 +26,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include <unistd.h>
+#include "string.h"
 
 
 /********************************************//**
@@ -43,7 +44,7 @@ int main(void)
   Event evt;
   FILE * fp;
 
-  const char * filename = "test.txt";
+  const char * filename = "main.c";
 
   printf("------------------------------------------\n\tCParser FSM Test\n------------------------------------------\n");
 
@@ -58,7 +59,7 @@ int main(void)
   /**< Get qualified file path */
   char testFile[strlen(currDir)+strlen(filename)+2];
   memset(testFile, '\0', strlen(currDir)+strlen(filename)+2);
-  snprintf(testFile, strlen(currDir)+strlen(filename)+2, "%s\\%s",currDir,filename);
+  snprintf(testFile, strlen(currDir)+strlen(filename)+2, "%s/%s",currDir,filename);
   printf("%s\n", testFile);
 
   /**< Exit if file open failed */
